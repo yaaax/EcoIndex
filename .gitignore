@@ -2,3 +2,6 @@
 *.iml
 .*.swp
 /public
+
+utils/node_modules
+utils/package-lock.json
