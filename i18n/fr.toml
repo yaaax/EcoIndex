@@ -12,3 +12,30 @@ other = "Testez votre site ... ou un autre !"
 
 [analyse-description]
 other = "Indiquez dans le champ ci-dessous l'url de la page dont vous souhaitez connaitre l'ecoindex"
+
+[ecoindex-result-title-column]
+other = "Métrique"
+
+[ecoindex-result-current-column]
+other = "Votre site"
+
+[ecoindex-result-min-column]
+other = "Min"
+
+[ecoindex-result-max-column]
+other = "Max"
+
+[ecoindex-result-median-column]
+other = "Mediane"
+
+[ecoindex-result-ecoindex-row]
+other = "Eco index"
+
+[ecoindex-result-dom-row]
+other = "Nombres d'éléments du DOM"
+
+[ecoindex-result-nb-requests-row]
+other = "Nombre de requêtes"
+
+[ecoindex-result-size-row]
+other = "Taille du document"

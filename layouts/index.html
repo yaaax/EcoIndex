@@ -16,11 +16,50 @@
 
 			<article>
 	
-				<form action="/" method="post">
-					<input type="text" name="siteurl" placeholder="http://example.com" size="40" />
+				<form action="/" method="post" id="getecoindex">
+					<input type="text" id="siteurl" name="siteurl" placeholder="http://example.com" size="40" />
 					<input type="submit" value="{{ i18n "analyse-cta" }}" />
 				</form>
-
+				<div class="none" id="eco-index-result-loader">
+					<img src="/ajax-loader.gif" />
+				</div>
+				<table class="none result" id="eco-index-result">
+					<tr>
+						<th>{{ i18n "ecoindex-result-title-column" }}</th>
+						<th>{{ i18n "ecoindex-result-current-column" }}</th>
+						<th>{{ i18n "ecoindex-result-min-column" }}</th>
+						<th>{{ i18n "ecoindex-result-max-column" }}</th>
+						<th>{{ i18n "ecoindex-result-median-column" }}</th>
+					</tr>
+					<tr>
+						<th>{{ i18n "ecoindex-result-ecoindex-row" }}</th>
+						<th id="ecoindex-result-ecoindex-current"></th>
+						<th id="ecoindex-result-ecoindex-min"></th>
+						<th id="ecoindex-result-ecoindex-max"></th>
+						<th id="ecoindex-result-ecoindex-median"></th>
+					</tr>
+					<tr>
+						<th>{{ i18n "ecoindex-result-dom-row" }}</th>
+						<th id="ecoindex-result-dom-current"></th>
+						<th id="ecoindex-result-dom-min"></th>
+						<th id="ecoindex-result-dom-max"></th>
+						<th id="ecoindex-result-dom-median"></th>
+					</tr>
+					<tr>
+						<th>{{ i18n "ecoindex-result-nb-requests-row" }}</th>
+						<th id="ecoindex-result-nb-requests-current"></th>
+						<th id="ecoindex-result-nb-requests-min"></th>
+						<th id="ecoindex-result-nb-requests-max"></th>
+						<th id="ecoindex-result-nb-requests-median"></th>
+					</tr>
+					<tr>
+						<th>{{ i18n "ecoindex-result-size-row" }}</th>
+						<th id="ecoindex-result-size-current"></th>
+						<th id="ecoindex-result-size-min"></th>
+						<th id="ecoindex-result-size-max"></th>
+						<th id="ecoindex-result-size-median"></th>
+					</tr>
+				</table>
 			</article>
 
 		</main>

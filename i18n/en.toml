@@ -12,3 +12,30 @@ other = "Test your website ... or another one !"
 
 [analyse-description]
 other = "Put the website url in the field below."
+
+[ecoindex-result-title-column]
+other = "Metric"
+
+[ecoindex-result-current-column]
+other = "Your site"
+
+[ecoindex-result-min-column]
+other = "Min"
+
+[ecoindex-result-max-column]
+other = "Max"
+
+[ecoindex-result-median-column]
+other = "Median"
+
+[ecoindex-result-ecoindex-row]
+other = "Eco index"
+
+[ecoindex-result-dom-row]
+other = "Nb DOM elements"
+
+[ecoindex-result-nb-requests-row]
+other = "Nb requests"
+
+[ecoindex-result-size-row]
+other = "Size"

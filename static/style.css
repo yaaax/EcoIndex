@@ -94,3 +94,23 @@ input[type="submit"] {
 	display: inline-block;
 	font-size: larger;
 }
+
+.none {
+	display: none;
+}
+
+table.result {
+	border-collapse: collapse;
+	font-weight: normal;
+	margin-top: 1em;
+}
+
+
+table th, td {
+	border: 1px solid #333333;
+	padding: 0.5em;
+}
+
+#eco-index-result-loader {
+	padding: 1em;
+}

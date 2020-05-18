@@ -1,6 +1,6 @@
 const request = require('request');
 const express = require('express');
-const fs = require('fs');
+var cors = require('cors')
 
 const testURL = 'http://www.ecoindex.fr/processRequest/';
 const statusURL = 'http://www.ecoindex.fr/ecoIndex_status/?id=';
@@ -147,6 +147,7 @@ async function getEcoIndexResult(urlUnderTest) {
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.post('/getEcoIndexResult', function (req, res) {
     const urlUnderTest = req.body.url;
