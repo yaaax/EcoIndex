@@ -1,5 +1,6 @@
 const request = require('request');
-var express = require('express');
+const express = require('express');
+const fs = require('fs');
 
 const testURL = 'http://www.ecoindex.fr/processRequest/';
 const statusURL = 'http://www.ecoindex.fr/ecoIndex_status/?id=';
@@ -95,17 +96,54 @@ async function waitForAnalysis(auditId) {
 
 function getResult(auditId) {
     console.log(`Get result HTML for ${auditId}`);
+
     return get(resultURL + auditId);
 }
 
 
-
+function parseResult(htmlResult) {
+    const extractData = (linePattern, startPattern, stopPattern) => {
+        return htmlResult.split("\n")
+            .filter(l => l.match(linePattern))
+            .filter(l => l.match('html'))
+            .map(l => l.substr(l.indexOf(startPattern)).replace(startPattern, ''))
+            .map(l => l.substr(0, l.indexOf(stopPattern)))[0].trim()
+    };
+    return {
+        ecoIndex : {
+            current : parseFloat(extractData('lab_eco_ths', "<b>", "</b>")),
+            min : 0,
+            max : 100,
+            median : parseFloat(extractData('lab_eco_moy', ": ", "'"))
+        },
+        dom : {
+            current : parseFloat(extractData('lab_dom_ths', "<b>", "</b>")),
+            min : 0,
+            max : parseFloat(extractData('lab_dom_max', ": ", " élém.")),
+            median : parseFloat(extractData('lab_dom_med', ":", " élém."))
+        },
+        nbRequests : {
+            current : parseFloat(extractData('lab_req_ths', "<b>", "</b>")),
+            min : 0,
+            max : parseFloat(extractData('lab_req_max', ": ", " req.")),
+            median : parseFloat(extractData('lab_req_med', ":", " req."))
+        },
+        size : {
+            current : parseFloat(extractData('lab_siz_ths', "<b>", "</b>")),
+            min : 0,
+            max : parseFloat(extractData('lab_siz_max', ": ", " Mo")),
+            median : parseFloat(extractData('lab_siz_med', ":", " Mo"))
+        }
+    };
+}
 
 async function getEcoIndexResult(urlUnderTest) {
     const auditId = await getAuditId(urlUnderTest);
     await waitForAnalysis(auditId);
-    return await getResult( auditId );
+    const htmlResult = await getResult( auditId );
+    return parseResult(htmlResult);
 }
+
 
 const app = express();
 app.use(express.json());
@@ -113,7 +151,7 @@ app.use(express.json());
 app.post('/getEcoIndexResult', function (req, res) {
     const urlUnderTest = req.body.url;
     getEcoIndexResult(urlUnderTest)
-        .then((result) => res.send(result));
+        .then((result) => res.json(result));
 });
 
 console.log(`Listening on ${ PORT }`);
